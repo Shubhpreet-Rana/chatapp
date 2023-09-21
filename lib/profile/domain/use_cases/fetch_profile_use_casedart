@@ -1,0 +1,16 @@
+// lib/src/profile/domain/use_cases/fetch_profile_use_case.dart
+
+import 'package:your_app/src/profile/data/profile_service.dart';
+import 'package:your_app/src/shared/domain/entities/user_entity.dart';
+
+class FetchProfileUseCase {
+  final ProfileService profileService;
+
+  FetchProfileUseCase({required this.profileService});
+
+  Future<UserEntity> execute() async {
+    final response = await profileService.fetchUserProfile();
+    // Parse response and create UserEntity (reuse UserEntity from shared)
+    return UserEntity.fromJson(response.data);
+  }
+}

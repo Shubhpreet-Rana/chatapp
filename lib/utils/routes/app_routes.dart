@@ -1,6 +1,10 @@
 class AppRoutes {
-  static String homePage = "/home";
-  static String loginPage = "/loginPage";
+  AppRoutes._();
+  static const initialRoutes = loginPage;
+  static const splash = "/splash";
+  static const homePage = "/home";
+  static const loginPage = "/loginPage";
+  static const signupPage = "/signupPage";
   static String bottomNavigation = "/bottomNavigation";
   static String selectedAlbum = "/selectedAlbum";
   static String discover = "/discover";
