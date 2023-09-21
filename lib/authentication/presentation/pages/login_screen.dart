@@ -19,7 +19,7 @@ class LoginScreen extends GetView<AuthenticationController> {
         child: ElevatedButton(
           onPressed: () async {
             UserEntity? user = await controller.login("newuser@example.com", "newpassword");
-            if (user!=null) Get.toNamed(AppRoutes.signupPage);
+            if (user!=null) Get.toNamed(AppRoutes.signupPage,arguments: "Arguments");
             // Handle user login, e.g., navigate to another screen
           },
           child: Text('Login'),

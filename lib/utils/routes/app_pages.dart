@@ -1,5 +1,7 @@
 import 'package:chatapp/authentication/presentation/pages/login_screen.dart';
 import 'package:chatapp/authentication/presentation/pages/signup_screen.dart';
+import 'package:chatapp/profile/presentation/bindings/profile_bindings.dart';
+import 'package:chatapp/profile/presentation/pages/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../authentication/presentation/binding/authentication_binding.dart';
@@ -10,7 +12,7 @@ class AppPages {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
-
+debugPrint("String Arguments ${settings.name}  ${args}");
     switch (settings.name) {
       case AppRoutes.loginPage:
         return GetPageRoute(
@@ -21,6 +23,10 @@ class AppPages {
         return GetPageRoute(
             page: () => const SignupScreen(),
             binding: AuthenticationBinding());
+        case AppRoutes.profilePage:
+        return GetPageRoute(
+            page: () => const ProfileScreen(),
+            binding: ProfileBindings());
       default:
         return _errorRoute();
     }

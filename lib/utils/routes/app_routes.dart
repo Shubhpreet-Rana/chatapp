@@ -5,6 +5,7 @@ class AppRoutes {
   static const homePage = "/home";
   static const loginPage = "/loginPage";
   static const signupPage = "/signupPage";
+  static const profilePage = "/profilePage";
   static String bottomNavigation = "/bottomNavigation";
   static String selectedAlbum = "/selectedAlbum";
   static String discover = "/discover";
