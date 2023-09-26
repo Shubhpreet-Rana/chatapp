@@ -1,14 +1,14 @@
-import 'package:chatapp/authentication/presentation/pages/login_screen.dart';
-import 'package:chatapp/authentication/presentation/pages/signup_screen.dart';
-import 'package:chatapp/profile/presentation/bindings/profile_bindings.dart';
-import 'package:chatapp/profile/presentation/pages/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../authentication/presentation/binding/authentication_binding.dart';
+import '../../modules/authentication/presentation/binding/authentication_binding.dart';
+import '../../modules/authentication/presentation/pages/login_screen.dart';
+import '../../modules/authentication/presentation/pages/signup_screen.dart';
+import '../../modules/profile/presentation/bindings/profile_bindings.dart';
+import '../../modules/profile/presentation/pages/profile_screen.dart';
 import 'app_routes.dart';
 
 class AppPages {
-  static String initialRoute = AppRoutes.homeTabView;
+  static String initialRoute = AppRoutes.loginPage;
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -20,10 +20,14 @@ class AppPages {
         );
       case AppRoutes.signupPage:
         return GetPageRoute(
-            page: () => const SignupScreen(), binding: AuthenticationBinding());
+            page: () => const SignupScreen(),
+            binding: AuthenticationBinding()
+        );
       case AppRoutes.profilePage:
         return GetPageRoute(
-            page: () => const ProfileScreen(), binding: ProfileBindings());
+            page: () => const ProfileScreen(),
+            binding: ProfileBindings()
+        );
       default:
         return _errorRoute();
     }
