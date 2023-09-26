@@ -1,6 +1,8 @@
 // lib/src/authentication/domain/entities/user_entity.dart
 
-class UserEntity {
+import 'package:chatapp/authentication/domain/entities/abstract_user_entity.dart';
+
+class UserEntity extends UserDomainEntity{
   final String id;
   final String username;
   final String email;

@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         title: 'Flutter Demo',
-        theme: AppTheme.lightTheme,
+        theme: AppTheme.lightTheme.copyWith(scaffoldBackgroundColor: Colors.white),
         initialRoute: AppRoutes.initialRoutes,
         onGenerateRoute: AppPages.generateRoute,);
 

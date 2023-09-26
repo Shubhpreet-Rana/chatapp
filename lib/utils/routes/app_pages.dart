@@ -12,21 +12,18 @@ class AppPages {
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
-debugPrint("String Arguments ${settings.name}  ${args}");
     switch (settings.name) {
       case AppRoutes.loginPage:
         return GetPageRoute(
-          page: () => LoginScreen(),
+          page: () => const LoginScreen(),
           binding: AuthenticationBinding(),
         );
       case AppRoutes.signupPage:
         return GetPageRoute(
-            page: () => const SignupScreen(),
-            binding: AuthenticationBinding());
-        case AppRoutes.profilePage:
+            page: () => const SignupScreen(), binding: AuthenticationBinding());
+      case AppRoutes.profilePage:
         return GetPageRoute(
-            page: () => const ProfileScreen(),
-            binding: ProfileBindings());
+            page: () => const ProfileScreen(), binding: ProfileBindings());
       default:
         return _errorRoute();
     }

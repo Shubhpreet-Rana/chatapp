@@ -3,33 +3,54 @@
 import 'package:chatapp/authentication/domain/entities/user_entity.dart';
 
 class UserModel {
-  final String id;
-  final String username;
-  final String email;
+  bool? status;
+  String? message;
+  Data? data;
 
-  UserModel({
-    required this.id,
-    required this.username,
-    required this.email,
-  });
+  UserModel({this.status, this.message, this.data});
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
-    return UserModel(
-      id: json['id'],
-      username: json['username'],
-      email: json['email'],
-    );
+  UserModel.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    message = json['message'];
+    data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'id': id,
-      'username': username,
-      'email': email,
-    };
+    final Map<String, dynamic> data =  <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
   }
 
-  toEntity(){
-    return UserEntity(id: id, username: username, email: email);
+
+  UserEntity? toEntity(){
+    return data!=null? UserEntity(id: data!.id??"", username: data!.username??"", email: data!.email??""):null;
   }
 }
+
+class Data {
+  String? id;
+  String? username;
+  String? email;
+
+  Data({this.id, this.username, this.email});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    username = json['username'];
+    email = json['email'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = this.id;
+    data['username'] = this.username;
+    data['email'] = this.email;
+    return data;
+  }
+
+}
+

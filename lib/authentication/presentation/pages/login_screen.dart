@@ -7,23 +7,26 @@ import '../../domain/entities/user_entity.dart';
 import '../controller/authentication_manager.dart';
 class LoginScreen extends GetView<AuthenticationController> {
 
-  LoginScreen({Key? key});
+  const LoginScreen({super.key, Key? keys});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Login'),
+        title: const Text('Login'),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () async {
-            UserEntity? user = await controller.login("newuser@example.com", "newpassword");
-            if (user!=null) Get.toNamed(AppRoutes.signupPage,arguments: "Arguments");
-            // Handle user login, e.g., navigate to another screen
-          },
-          child: Text('Login'),
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          TextFormField(controller: controller.emailTextController,decoration:InputDecoration(hintText: "Email"),),
+          TextFormField(controller: controller.passwordTextController,decoration:InputDecoration(hintText: "Password"),),
+          Center(
+            child: ElevatedButton(
+              onPressed: controller.login,
+              child: const Text('Login'),
+            ),
+          ),
+        ],
       ),
     );
   }
