@@ -1,3 +1,4 @@
+import 'package:chatapp/utils/app_toasts/app_toast.dart';
 import 'package:chatapp/utils/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -24,15 +25,25 @@ class AuthenticationController extends GetxController {
   }
 
   void goToSignUp(){
-    Get.toNamed(AppRoutes.signupPage);
+    Get.offAllNamed(AppRoutes.signupPage);
+  }
+
+  void goToSignIn(){
+    Get.offAllNamed(AppRoutes.loginPage);
+  }
+
+  void forgotPassword(){
+    // Get.offAllNamed(AppRoutes.loginPage);
+    AppToast.notice(title: "Notice", message: "Feature is not available ");
+
   }
 
   Future<UserEntity?> login() async {
     return LoginUseCase(repository: authenticationRepository).execute(emailTextController.text, passwordTextController.text);
   }
 
-  Future<UserEntity?> signup(String username, String email, String password) async {
-    return RegisterUserCase(repository: authenticationRepository).execute(username:username, email:email, password:password);
+  Future<UserEntity?> signup() async {
+    return RegisterUserCase(repository: authenticationRepository).execute(username:userNameTextController.text, email:emailTextController.text, password:passwordTextController.text);
   }
 
   Future<bool> exists(String username, String email) async {

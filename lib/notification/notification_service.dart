@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 
-import '../utils/app_colors.dart';
-
 class NotificationService {
   static final FlutterLocalNotificationsPlugin
   _flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -98,9 +96,7 @@ class NotificationService {
     Get.snackbar(
       "${notification.title}",
       "${ notification.body}",
-      colorText: AppColors.primary,
       icon: const Icon(Icons.flutter_dash),
-      backgroundColor: AppColors.white,
 
     );
   }

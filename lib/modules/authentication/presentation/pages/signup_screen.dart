@@ -1,7 +1,11 @@
 // lib/src/authentication/presentation/screens/signup_screen.dart
 
+import 'package:chatapp/utils/app_text.dart';
+import 'package:chatapp/utils/routes/app_routes.dart';
+import 'package:chatapp/utils/sizes_config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../../utils/form_fiels.dart';
 import '../../domain/entities/user_entity.dart';
 import '../controller/authentication_manager.dart';
 class SignupScreen extends GetView<AuthenticationController> {
@@ -12,28 +16,28 @@ class SignupScreen extends GetView<AuthenticationController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Signup'),
+        title: const Text('Signup'),
       ),
       body: Column(
         children: [
+          AppTextFormFields(controller: controller.userNameTextController,hint: "User Name").paddingOnly(bottom: Dimens.paddingMedium),
+          AppTextFormFields(controller: controller.emailTextController,hint: "Email").paddingOnly(bottom: Dimens.paddingMedium),
+          AppTextFormFields(controller: controller.passwordTextController,hint: "Password").paddingOnly(bottom: Dimens.paddingMedium),
+
           Center(
             child: ElevatedButton(
-              onPressed: () async {
-                UserEntity? user = await controller.signup("newuser", "newuser@example.com", "newpassword");
-                // Handle user signup, e.g., navigate to another screen
-              },
-              child: Text('Signup'),
+              onPressed: controller.signup,
+              child: const AppText('Signup'),
             ),
           ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () async {
-               bool user = await controller.exists("","newuser@example.com");
-                // Handle user signup, e.g., navigate to another screen
-              },
-              child: Text('Exists'),
-            ),
-          ),
+      Row(
+        children: [
+          const AppText("Already have an account ?"),
+          TextButton(
+    style: TextButton.styleFrom(padding: EdgeInsets.zero),
+    onPressed: controller.goToSignIn, child: const AppText("SignIn")),
+        ],
+      )
         ],
       ),
     );

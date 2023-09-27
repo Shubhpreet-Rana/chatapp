@@ -1,3 +1,6 @@
+import 'package:chatapp/utils/app_themes/color_schemes.dart';
+import 'package:chatapp/utils/app_themes/custom_color.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -20,11 +23,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-        title: 'Flutter Demo',
-        theme: AppTheme.lightTheme.copyWith(scaffoldBackgroundColor: Colors.white),
-        initialRoute: AppRoutes.initialRoutes,
-        onGenerateRoute: AppPages.generateRoute,);
+    return DynamicColorBuilder(
+        builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+          ColorScheme lightScheme;
+          ColorScheme darkScheme;
+
+          if (lightDynamic != null && darkDynamic != null) {
+            lightScheme = lightDynamic.harmonized();
+            lightCustomColors = lightCustomColors.harmonized(lightScheme);
+
+            // Repeat for the dark color scheme.
+            darkScheme = darkDynamic.harmonized();
+            darkCustomColors = darkCustomColors.harmonized(darkScheme);
+          } else {
+            // Otherwise, use fallback schemes.
+            lightScheme = lightColorScheme;
+            darkScheme = darkColorScheme;
+          }
+
+          return GetMaterialApp(
+            title: 'Flutter Demo',
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
+            themeMode: ThemeMode.light,
+            initialRoute: AppRoutes.initialRoutes,
+            onGenerateRoute: AppPages.generateRoute,);
+        }
+    );
 
   }
 }
