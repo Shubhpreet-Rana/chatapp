@@ -1,4 +1,5 @@
 enum TextSizes{
+  extraSmall,
   small,
   medium,
   normal,

@@ -1,11 +1,12 @@
 class AppRoutes {
   AppRoutes._();
-  static const initialRoutes = loginPage;
+  static const initialRoutes = "/loginPage";
   static const splash = "/splash";
   static const homePage = "/home";
   static const loginPage = "/loginPage";
   static const signupPage = "/signupPage";
   static const profilePage = "/profilePage";
+  static const userListPage = "/userListPage";
   static String bottomNavigation = "/bottomNavigation";
   static String selectedAlbum = "/selectedAlbum";
   static String discover = "/discover";

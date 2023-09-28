@@ -1,5 +1,6 @@
 import 'package:chatapp/utils/app_toasts/app_toast.dart';
 import 'package:chatapp/utils/routes/app_routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import '../../domain/entities/user_entity.dart';
@@ -16,7 +17,6 @@ class AuthenticationController extends GetxController {
   late TextEditingController emailTextController;
   late TextEditingController passwordTextController;
 
-
   @override
   void onInit() {
     userNameTextController = TextEditingController();
@@ -24,32 +24,38 @@ class AuthenticationController extends GetxController {
     passwordTextController = TextEditingController();
   }
 
-  void goToSignUp(){
+  void goToSignUp() {
     Get.offAllNamed(AppRoutes.signupPage);
   }
 
-  void goToSignIn(){
+  void goToSignIn() {
     Get.offAllNamed(AppRoutes.loginPage);
   }
 
-  void forgotPassword(){
+  void forgotPassword() {
     // Get.offAllNamed(AppRoutes.loginPage);
     AppToast.notice(title: "Notice", message: "Feature is not available ");
-
   }
 
-  Future<UserEntity?> login() async {
-    return LoginUseCase(repository: authenticationRepository).execute(emailTextController.text, passwordTextController.text);
+  Future<void> login() async {
+    UserEntity? userEntity =
+        await LoginUseCase(repository: authenticationRepository)
+            .execute(emailTextController.text, passwordTextController.text);
+    if (userEntity is UserEntity) {
+      Get.offAllNamed(AppRoutes.userListPage);
+    }
   }
 
   Future<UserEntity?> signup() async {
-    return RegisterUserCase(repository: authenticationRepository).execute(username:userNameTextController.text, email:emailTextController.text, password:passwordTextController.text);
+    return RegisterUserCase(repository: authenticationRepository).execute(
+        username: userNameTextController.text,
+        email: emailTextController.text,
+        password: passwordTextController.text);
   }
 
   Future<bool> exists(String username, String email) async {
     return authenticationRepository.exists(username, email);
   }
-
 
   @override
   void dispose() {

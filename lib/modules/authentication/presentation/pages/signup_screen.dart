@@ -8,9 +8,9 @@ import 'package:get/get.dart';
 import '../../../../utils/form_fiels.dart';
 import '../../domain/entities/user_entity.dart';
 import '../controller/authentication_manager.dart';
-class SignupScreen extends GetView<AuthenticationController> {
 
- const SignupScreen({super.key});
+class SignupScreen extends GetView<AuthenticationController> {
+  const SignupScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,27 +19,38 @@ class SignupScreen extends GetView<AuthenticationController> {
         title: const Text('Signup'),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          AppTextFormFields(controller: controller.userNameTextController,hint: "User Name").paddingOnly(bottom: Dimens.paddingMedium),
-          AppTextFormFields(controller: controller.emailTextController,hint: "Email").paddingOnly(bottom: Dimens.paddingMedium),
-          AppTextFormFields(controller: controller.passwordTextController,hint: "Password").paddingOnly(bottom: Dimens.paddingMedium),
-
+          AppTextFormFields(
+                  controller: controller.userNameTextController,
+                  hint: "User Name")
+              .paddingOnly(bottom: Dimens.paddingMedium),
+          AppTextFormFields(
+                  controller: controller.emailTextController, hint: "Email")
+              .paddingOnly(bottom: Dimens.paddingMedium),
+          AppTextFormFields(
+                  controller: controller.passwordTextController,
+                  hint: "Password")
+              .paddingOnly(bottom: Dimens.paddingMedium),
           Center(
             child: ElevatedButton(
               onPressed: controller.signup,
               child: const AppText('Signup'),
             ),
           ),
-      Row(
-        children: [
-          const AppText("Already have an account ?"),
-          TextButton(
-    style: TextButton.styleFrom(padding: EdgeInsets.zero),
-    onPressed: controller.goToSignIn, child: const AppText("SignIn")),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const AppText.small("Already have an account ?"),
+              TextButton(
+                  style: TextButton.styleFrom(padding: EdgeInsets.zero),
+                  onPressed: controller.goToSignIn,
+                  child: const AppText.small("SignIn")),
+            ],
+          )
         ],
-      )
-        ],
-      ),
+      ).paddingSymmetric(horizontal: Dimens.margin),
     );
   }
 }

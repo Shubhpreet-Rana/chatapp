@@ -13,6 +13,7 @@ class AppText extends StatelessWidget {
   final int? minLines;
   final TextAlign? textAlign;
   final EdgeInsets? padding;
+
   final VoidCallback? onTap;
   final TextDecoration? textDecoration;
 
@@ -28,6 +29,20 @@ class AppText extends StatelessWidget {
     this.onTap,
     this.textDecoration,
     this.fontSize,
+  }) : super(key: key);
+
+  const AppText.extraSmall(
+    this.label, {
+    Key? key,
+    this.color,
+    this.minLines = 1,
+    this.fontSize = TextSizes.extraSmall,
+    this.fontWeight = FontWeight.w400,
+    this.maxLines = 1,
+    this.textAlign = TextAlign.left,
+    this.padding,
+    this.onTap,
+    this.textDecoration,
   }) : super(key: key);
 
   const AppText.small(
@@ -89,7 +104,9 @@ class AppText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final double textSize;
-    if (fontSize == TextSizes.small) {
+    if (fontSize == TextSizes.extraSmall) {
+      textSize = Dimens.fontExtraSmall;
+    } else if (fontSize == TextSizes.small) {
       textSize = Dimens.fontSmall;
     } else if (fontSize == TextSizes.medium) {
       textSize = Dimens.fontMedium;
@@ -110,6 +127,7 @@ class AppText extends StatelessWidget {
               ? Text(
                   label,
                   textAlign: textAlign,
+
                   style: TextStyle(
                     color: color,
                     fontWeight: fontWeight,

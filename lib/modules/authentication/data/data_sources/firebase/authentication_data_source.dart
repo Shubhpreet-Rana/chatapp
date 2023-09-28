@@ -1,13 +1,15 @@
 // Data Layer (authentication/data_sources/profile_data_source.dart)
 
 import 'dart:core';
+import 'package:chatapp/modules/authentication/domain/repositories/authentication_data_source.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../../models/user_model.dart';
 
-class AuthenticationDataSourceFirebase {
+class AuthenticationDataSourceFirebase  extends AuthenticationDataSource{
   CollectionReference users = FirebaseFirestore.instance.collection('users');
 
+  @override
   Future<UserModel?> loginUser(
       {required String email, required String password}) async {
     bool hasUser = false;
@@ -30,6 +32,7 @@ class AuthenticationDataSourceFirebase {
         QueryDocumentSnapshot queryDocumentSnapshot = querySnapshot.docs.first;
         Map<String, dynamic> data =
             (queryDocumentSnapshot.data() ?? {}) as Map<String, dynamic>;
+        //User Logged In
         if (data.isNotEmpty) {
           Map<String, dynamic> mapData = {
             "status": true,
@@ -49,6 +52,7 @@ class AuthenticationDataSourceFirebase {
     }
   }
 
+  @override
   Future<UserModel?> signupUser(
       {required String username,
       required String email,
@@ -75,13 +79,13 @@ class AuthenticationDataSourceFirebase {
       if (!hasUser) {
         await users.doc(userId).set(userData);
         hasUser = await exists(username: username, email: email);
-        //User Added
-        if (hasUser) {
-          return UserModel(status: false, message: "User Added");
-        }
         //User Not Added
         if (!hasUser) {
           return UserModel(status: false, message: "User Not Added");
+        }
+        //User Added
+        if (hasUser) {
+          return UserModel(status: true, message: "User Added Successfully");
         }
       }
       //Something Went Wrong
@@ -93,6 +97,7 @@ class AuthenticationDataSourceFirebase {
     }
   }
 
+  @override
   Future<bool> exists({required String username, required String email}) async {
     QuerySnapshot querySnapshot =
         await users.where('email', isEqualTo: email).get();

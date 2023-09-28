@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../app_text.dart';
+import '../app_themes/custom_color.dart';
 
 class AppToast {
   Color? backgroundColor;
@@ -27,9 +28,9 @@ class AppToast {
   }
 
   AppToast.success({required this.title, required this.message}) {
-    backgroundColor = Get.theme.colorScheme.secondaryContainer;
-    titleColor = Get.theme.colorScheme.secondary;
-    messageColor = Get.theme.colorScheme.secondary;
+    backgroundColor = Get.theme.extension<CustomColors>()!.successContainer;
+    titleColor = Get.theme.extension<CustomColors>()!.success;
+    messageColor = Get.theme.extension<CustomColors>()!.success;
     call();
   }
 
@@ -38,7 +39,7 @@ class AppToast {
       "t","tt",
       titleText: AppText(title, color: titleColor,),
       messageText: AppText.small(message, color: messageColor),
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 2),
       backgroundColor: backgroundColor,
     );
 

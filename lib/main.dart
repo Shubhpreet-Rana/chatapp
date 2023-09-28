@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return DynamicColorBuilder(
         builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+
           ColorScheme lightScheme;
           ColorScheme darkScheme;
 
@@ -45,9 +46,9 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             theme: AppTheme.lightTheme,
             darkTheme: AppTheme.darkTheme,
-            themeMode: ThemeMode.light,
-            initialRoute: AppRoutes.initialRoutes,
-            onGenerateRoute: AppPages.generateRoute,);
+            themeMode: ThemeMode.system,
+            onGenerateRoute: AppPages.generateRoute,
+        );
         }
     );
 
