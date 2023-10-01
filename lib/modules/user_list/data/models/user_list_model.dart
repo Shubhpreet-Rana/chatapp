@@ -1,5 +1,4 @@
 import 'package:chatapp/modules/authentication/domain/entities/user_entity.dart';
-
 import '../../../authentication/data/models/user_model.dart';
 
 class UserListModel {
@@ -15,7 +14,7 @@ class UserListModel {
     if (json['data'] != null) {
       data = <UserEntity>[];
       json['data'].forEach((v) {
-        data!.add( UserModel.fromJson(v).toEntity()!);
+        data!.add( UserModel.toEntityFromJson(v).toEntity()!);
       });
     }
   }

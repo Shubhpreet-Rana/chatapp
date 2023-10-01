@@ -22,7 +22,7 @@ class AuthenticationDataSourceFirebase  extends AuthenticationDataSource{
       }
       //Email Exist
       QuerySnapshot querySnapshot =
-          await users.where("password", isEqualTo: password).get();
+          await users.where("email" , isEqualTo: email).where("password", isEqualTo: password).get();
       //Password Not Exist
       if (querySnapshot.docs.isEmpty) {
         return UserModel(status: false, message: "Invalid Password");

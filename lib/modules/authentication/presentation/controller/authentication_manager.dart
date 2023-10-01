@@ -3,6 +3,7 @@ import 'package:chatapp/utils/routes/app_routes.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import '../../../../utils/validations.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/authentication_repositary.dart';
 import '../../domain/use_cases/login_use_case.dart';
@@ -38,23 +39,37 @@ class AuthenticationController extends GetxController {
   }
 
   Future<void> login() async {
-    UserEntity? userEntity =
-        await LoginUseCase(repository: authenticationRepository)
-            .execute(emailTextController.text, passwordTextController.text);
-    if (userEntity is UserEntity) {
-      Get.offAllNamed(AppRoutes.userListPage);
+    Get.closeCurrentSnackbar();
+    if (Validations().isEmailValid(emailTextController.text)) {
+      if (Validations().isPasswordValid(passwordTextController.text)) {
+        UserEntity? userEntity =
+            await LoginUseCase(repository: authenticationRepository)
+                .execute(emailTextController.text, passwordTextController.text);
+        if (userEntity is UserEntity) {
+          Get.offAllNamed(AppRoutes.userListPage);
+        }
+      }
     }
   }
 
   Future<UserEntity?> signup() async {
-    return RegisterUserCase(repository: authenticationRepository).execute(
-        username: userNameTextController.text,
-        email: emailTextController.text,
-        password: passwordTextController.text);
+    Get.closeCurrentSnackbar();
+    if (Validations().isEmailValid(emailTextController.text)) {
+      if (Validations().isPasswordValid(passwordTextController.text)) {
+        return RegisterUserCase(repository: authenticationRepository).execute(
+            username: userNameTextController.text,
+            email: emailTextController.text,
+            password: passwordTextController.text);
+      }
+    }
+    return null;
   }
 
   Future<bool> exists(String username, String email) async {
-    return authenticationRepository.exists(username, email);
+    if (Validations().isEmailValid(emailTextController.text)) {
+      return authenticationRepository.exists(username, email);
+    }
+    return false;
   }
 
   @override

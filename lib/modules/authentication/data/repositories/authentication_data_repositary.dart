@@ -1,6 +1,6 @@
 // lib/src/authentication/data/repositories/authentication_data_repository.dart
 
-import 'package:chatapp/utils/app_toasts/api_toast.dart';
+import '../../../../utils/app_toasts/app_toast.dart';
 import '../../domain/entities/user_entity.dart';
 import '../../domain/repositories/authentication_data_source.dart';
 import '../../domain/repositories/authentication_repositary.dart';
@@ -16,9 +16,9 @@ class AuthenticationDataRepository implements AuthenticationRepository {
     final userModel = await authenticationDataSource.loginUser(
         email: email, password: password);
     if (userModel!.status == true) {
-      ApiToast.success(title: title, message: userModel.message.toString());
+      AppToast.success(title: title, message: userModel.message.toString());
     } else {
-      ApiToast.error(title: title, message: userModel.message.toString());
+      AppToast.error(title: title, message: userModel.message.toString());
     }
     return userModel.toEntity();
   }
@@ -30,9 +30,9 @@ class AuthenticationDataRepository implements AuthenticationRepository {
     final userModel = await authenticationDataSource.signupUser(
         username: username, email: email, password: password);
     if (userModel!.status == true) {
-      ApiToast.success(title: title, message: userModel.message.toString());
+      AppToast.success(title: title, message: userModel.message.toString());
     } else {
-      ApiToast.error(title: title, message: userModel.message.toString());
+      AppToast.error(title: title, message: userModel.message.toString());
     }
     return userModel.toEntity();
   }

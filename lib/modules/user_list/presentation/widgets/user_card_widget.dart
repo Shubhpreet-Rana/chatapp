@@ -1,3 +1,4 @@
+import 'package:chatapp/modules/authentication/domain/entities/user_entity.dart';
 import 'package:chatapp/modules/user_list/presentation/manager/user_list_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -6,14 +7,16 @@ import '../../../../utils/app_text.dart';
 import '../../../../utils/sizes_config.dart';
 
 class UserCard extends GetView<UserListController> {
-  const UserCard({super.key});
+  const UserCard({super.key, required this.userEntity });
 
+  final UserEntity userEntity;
   @override
   Widget build(BuildContext context) {
+
     return Card(
       shape: const StadiumBorder(),
       child: ListTile(
-        title: const AppText("User Name", ),
+        title:  AppText(userEntity.username, ),
         subtitle: const AppText.small(
           "This is content for Message Appeared In The Chat",
           maxLines: 1,

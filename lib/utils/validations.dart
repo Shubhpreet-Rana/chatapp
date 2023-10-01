@@ -1,4 +1,9 @@
+import 'package:chatapp/utils/app_toasts/app_toast.dart';
 class Validations{
+
+  Validations(){
+
+  }
 
   String? handleFirst(String value) {
     if (value.length >= 3) {
@@ -32,6 +37,21 @@ class Validations{
       return null;
     }
     return "Please Select a country";
+  }
+
+
+  bool isEmailValid(String email) {
+    const pattern = r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$';
+    final regExp = RegExp(pattern);
+    bool isValid = regExp.hasMatch(email);
+    if(!isValid)AppToast.error(title: "Invalid Email", message: "Please enter a valid email");
+    return isValid;
+  }
+
+  bool isPasswordValid(String password) {
+    bool isValid = password.length>=8;
+    if(!isValid)AppToast.error(title: "Invalid Password", message: "Password must be minimum 8 characters");
+    return isValid;
   }
 }
 

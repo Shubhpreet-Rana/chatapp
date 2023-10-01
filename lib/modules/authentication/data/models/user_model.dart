@@ -1,5 +1,7 @@
 // Data Layer (user_model.dart)
 
+import 'package:flutter/cupertino.dart';
+
 import '../../domain/entities/user_entity.dart';
 
 class UserModel {
@@ -10,13 +12,17 @@ class UserModel {
   UserModel({this.status, this.message, this.data});
 
   UserModel.fromJson(Map<String, dynamic> json) {
+    debugPrint("Show User Model $json");
     status = json['status'];
     message = json['message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 
+  UserModel.toEntityFromJson(Map<String,dynamic> json){
+    data = json != null ?Data.fromJson(json) : null;
+  }
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
     if (this.data != null) {
@@ -25,9 +31,19 @@ class UserModel {
     return data;
   }
 
+  UserEntity? toEntity() {
+    debugPrint("User Info "+data.toString());
+    return data != null
+        ? UserEntity(
+            id: data!.id ?? "",
+            username: data!.username ?? "",
+            email: data!.email ?? "")
+        : null;
+  }
 
-  UserEntity? toEntity(){
-    return data!=null? UserEntity(id: data!.id??"", username: data!.username??"", email: data!.email??""):null;
+  @override
+  String toString() {
+    return 'UserModel{status: $status, message: $message, data: $data}';
   }
 }
 
@@ -52,5 +68,8 @@ class Data {
     return data;
   }
 
+  @override
+  String toString() {
+    return 'Data{id: $id, username: $username, email: $email}';
+  }
 }
-
