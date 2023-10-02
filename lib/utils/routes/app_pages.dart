@@ -1,5 +1,6 @@
 import 'package:chatapp/modules/user_list/presentation/bindings/user_list_bindings.dart';
 import 'package:chatapp/modules/user_list/presentation/pages/user_list_screen.dart';
+import 'package:chatapp/modules/user_list/presentation/pages/users_tab_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../modules/authentication/presentation/binding/authentication_binding.dart';
@@ -36,7 +37,7 @@ class AppPages {
         case AppRoutes.userListPage:
         return GetPageRoute(
             routeName: AppRoutes.userListPage,
-            page: () => const UserListScreen(),
+            page: () => const UserHomeTab(),
             binding: UserListBinding()
         );
       default:

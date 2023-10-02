@@ -9,6 +9,8 @@ import 'utils/app_themes/app_theme.dart';
 import 'utils/routes/app_pages.dart';
 import 'utils/routes/app_routes.dart';
 
+
+String userid = "";
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
