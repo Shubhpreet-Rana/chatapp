@@ -15,12 +15,9 @@ class UserListController extends GetxController {
   @override
   void onInit() {
     chatListRepository.oneToOneChat();
+    chatListRepository.groupChat();
   }
 
-  Future<List<UserEntity>?> getSearchedUsersList() {
-    // TODO: implement getSearchedUsersList
-    throw UnimplementedError();
-  }
 
 
   Future<List<UserEntity>?> getUsersList() {

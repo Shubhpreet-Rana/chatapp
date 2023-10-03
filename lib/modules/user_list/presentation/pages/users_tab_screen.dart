@@ -16,6 +16,7 @@ class UserHomeTab extends StatelessWidget {
           floatingActionButton: FilledButton(onPressed: (){},child: Icon(Icons.chat),),
           appBar: AppBar(
             title: TabBar(
+              indicatorSize: TabBarIndicatorSize.tab,
               tabs: [
                 AppText("Chats"),
                 AppText("Groups"),
