@@ -1,3 +1,4 @@
+import 'package:chatapp/modules/calls/presentation/pages/calls_list_screen.dart';
 import 'package:chatapp/modules/user_list/presentation/bindings/user_list_bindings.dart';
 import 'package:chatapp/modules/user_list/presentation/pages/user_list_screen.dart';
 import 'package:chatapp/modules/user_list/presentation/pages/users_tab_screen.dart';

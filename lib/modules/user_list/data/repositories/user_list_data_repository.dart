@@ -8,9 +8,9 @@ class UserListDataRepository extends UserListRepository{
   UserListDataRepository({required this.userListDataSource});
 
   @override
-  Future<List<UserEntity>?> getSearchedUsersList() {
-    // TODO: implement getSearchedUsersList
-    throw UnimplementedError();
+  Future<List<UserEntity>?> getSearchedUsersList({required String search}) async{
+    UserListModel? userList = await userListDataSource.getSearchedUsersList(search : search);
+    return userList!.data;
   }
 
   @override

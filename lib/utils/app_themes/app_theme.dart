@@ -13,6 +13,8 @@ ThemeData _lightTheme = ThemeData.from(
   useMaterial3: true,
 ).copyWith(
   extensions: [lightCustomColors],
+  searchBarTheme: SearchBarThemeData(elevation: MaterialStatePropertyAll(1)),
+    searchViewTheme: SearchViewThemeData(backgroundColor: Colors.red),
   inputDecorationTheme: InputDecorationTheme(filled: true, border: OutlineInputBorder(borderRadius: BorderRadius.circular(15)) )
   );
 

@@ -7,6 +7,8 @@ class AppRoutes {
   static const signupPage = "/signupPage";
   static const profilePage = "/profilePage";
   static const userListPage = "/userListPage";
+  static const callListPage = "/userListPage";
+  static const userChatListPage = "/userChaListPage";
   static String bottomNavigation = "/bottomNavigation";
   static String selectedAlbum = "/selectedAlbum";
   static String discover = "/discover";

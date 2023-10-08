@@ -30,8 +30,6 @@ class ChatListDataSourceFirebase implements ChatListDataSource {
       }
       return null;
       // Something went Wrong
-      return UserListModel(
-          status: false, message: "Something Went Wrong", data: []);
     } catch (e, st) {
       debugPrint("User List Error  $e");
       debugPrint("User List Error  $st");

@@ -1,6 +1,5 @@
 import '../model/response/news_response_model.dart';
 import 'api_manager.dart';
-import 'endpoints.dart';
 
 class CallAPI {
 

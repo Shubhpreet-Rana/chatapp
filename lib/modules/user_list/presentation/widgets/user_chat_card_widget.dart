@@ -6,8 +6,8 @@ import 'package:get/get.dart';
 import '../../../../utils/app_text.dart';
 import '../../../../utils/sizes_config.dart';
 
-class UserCard extends GetView<UserListController> {
-  const UserCard({super.key, required this.userEntity });
+class UserChatCard extends GetView<UserListController> {
+  const UserChatCard({super.key, required this.userEntity });
 
   final UserEntity userEntity;
   @override

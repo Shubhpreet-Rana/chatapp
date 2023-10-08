@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../utils/app_text.dart';
-import '../widgets/user_card_widget.dart';
+import '../../../../utils/form_fiels.dart';
+import '../widgets/user_chat_card_widget.dart';
 
 class UserListScreen extends GetView<UserListController> {
   const UserListScreen({super.key});
@@ -29,7 +30,7 @@ class UserListScreen extends GetView<UserListController> {
             return ListView.separated(
               itemCount: snapshot.data!.length,
               itemBuilder: (context, index) =>
-                  UserCard(userEntity: snapshot.data![index]),
+                  UserChatCard(userEntity: snapshot.data![index]),
               separatorBuilder: (BuildContext context, int index) =>
                   const SizedBox(
                 height: 10,
